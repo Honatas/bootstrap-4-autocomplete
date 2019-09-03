@@ -6,6 +6,8 @@
         "target": "ES3",
         "module": "none",
         "moduleResolution": "node",
+        "declaration": true,
+        "outDir": "dist",
     }
 }
   

@@ -2,10 +2,9 @@
   "name": "bootstrap-4-autocomplete",
   "version": "0.0.2",
   "description": "A simple autocomplete/typeahead for Bootstrap 4 and jQuery",
-  "main": "./dist/bootstrap-4-autocomplete.js",
-  "types": "./dist/bootstrap-4-autocomplete.d.ts",
+  "typings": "dist/bootstrap-4-autocomplete.d.ts",
   "scripts": {
-    "build": "tsc -d --outDir dist",
+    "build": "tsc; uglifyjs dist/bootstrap-4-autocomplete.js -o dist/bootstrap-4-autocomplete.min.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -27,6 +26,7 @@
   "devDependencies": {
     "@types/bootstrap": "^4.3.1",
     "@types/jquery": "^3.3.31",
-    "typescript": "^3.6.2"
+    "typescript": "^3.6.2",
+    "uglify-js": "^3.6.0"
   }
 }

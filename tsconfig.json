@@ -1,0 +1,12 @@
+{
+    "include": [
+        "src/**/*.ts",
+    ],
+    "compilerOptions": {
+        "target": "ES3",
+        "module": "none",
+        "moduleResolution": "node",
+    }
+}
+  
+  

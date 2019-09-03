@@ -13,7 +13,10 @@
     "autocomplete",
     "typeahead"
   ],
-  "repository": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Honatas/bootstrap-4-autocomplete"
+  },
   "author": "Jonatas de Moraes Junior",
   "license": "MIT",
   "dependencies": {

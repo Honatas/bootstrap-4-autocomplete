@@ -5,6 +5,7 @@ interface AutocompleteOptions {
     value?: string,
     label?: string,
     dropdownOptions?: Bootstrap.DropdownOption,
+    // onSelect?: (value: string) => void,
 }
 
 interface JQuery {
@@ -22,21 +23,23 @@ interface JQuery {
         // merge options with default
         let opts = $.extend(defaults, options);
 
+        let _field = $(this);
+
         // attach dropdown
-        $(this).parent().addClass('dropdown');
-        $(this).attr('data-toggle', 'dropdown');
-        $(this).addClass('dropdown-toggle');
-        $(this).after('<div class="dropdown-menu"></div>');
-        $(this).dropdown(opts.dropdownOptions);
+        _field.parent().addClass('dropdown');
+        _field.attr('data-toggle', 'dropdown');
+        _field.addClass('dropdown-toggle');
+        _field.after('<div class="dropdown-menu"></div>');
+        _field.dropdown(opts.dropdownOptions);
         
         // show options
-        return this.keyup(function() {
-            const lookup = $(this).val() as string;
+        this.keyup(function() {
+            const lookup = _field.val() as string;
             if (lookup.length < opts.treshold) {
-                $(this).dropdown('hide');
+                _field.dropdown('hide');
                 return;
             }
-            const items = $(this).next();
+            const items = _field.next();
             items.html('');
 
             let count = 0;
@@ -53,7 +56,15 @@ interface JQuery {
                     }
                 }
             }
-            $(this).dropdown('show');
+
+            // option action
+            _field.next().find('.dropdown-item').click(function() {
+                _field.val($(this).html());
+            });
+
+            _field.dropdown('show');
         });
+
+        return this;
     };
 }( jQuery ));

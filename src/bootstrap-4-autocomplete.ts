@@ -1,3 +1,8 @@
+interface AutocompleteItem {
+    value: string,
+    label: string,
+}
+
 interface AutocompleteOptions {
     source?: object,
     treshold?: number,
@@ -5,7 +10,7 @@ interface AutocompleteOptions {
     value?: string,
     label?: string,
     dropdownOptions?: Bootstrap.DropdownOption,
-    // onSelect?: (value: string) => void,
+    onSelectItem?: (item: AutocompleteItem) => void,
 }
 
 interface JQuery {
@@ -60,6 +65,12 @@ interface JQuery {
             // option action
             _field.next().find('.dropdown-item').click(function() {
                 _field.val($(this).html());
+                if (opts.onSelectItem) {
+                    opts.onSelectItem({
+                        value: $(this).data('value'),
+                        label: $(this).html(),
+                    })
+                }
             });
 
             _field.dropdown('show');

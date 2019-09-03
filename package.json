@@ -5,7 +5,7 @@
   "typings": "dist/bootstrap-4-autocomplete.d.ts",
   "scripts": {
     "build": "tsc; uglifyjs dist/bootstrap-4-autocomplete.js -o dist/bootstrap-4-autocomplete.min.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"No test specified\""
   },
   "keywords": [
     "bootstrap",

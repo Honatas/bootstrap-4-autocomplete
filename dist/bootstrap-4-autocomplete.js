@@ -14,13 +14,18 @@
         _field.addClass('dropdown-toggle');
         _field.after('<div class="dropdown-menu"></div>');
         _field.dropdown(opts.dropdownOptions);
-        // show options
-        this.keyup(function () {
+        // setup positioning and prevent show empty
+        this.click(function () {
             var lookup = _field.val();
             if (lookup.length < opts.treshold) {
                 _field.dropdown('hide');
                 return;
             }
+        });
+        // show options
+        this.keyup(function () {
+            _field.click();
+            var lookup = _field.val();
             var items = _field.next();
             items.html('');
             var count = 0;
@@ -36,6 +41,9 @@
                         break;
                     }
                 }
+            }
+            if (items.children().length == 0) {
+                return;
             }
             // option action
             _field.next().find('.dropdown-item').click(function () {

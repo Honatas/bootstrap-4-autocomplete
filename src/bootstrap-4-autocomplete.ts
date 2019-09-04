@@ -38,13 +38,20 @@ interface JQuery {
         _field.after('<div class="dropdown-menu"></div>');
         _field.dropdown(opts.dropdownOptions);
         
-        // show options
-        this.keyup(function() {
+        // setup positioning and prevent show empty
+        this.click(function() {
             const lookup = _field.val() as string;
             if (lookup.length < opts.treshold) {
                 _field.dropdown('hide');
                 return;
             }
+        });
+
+        // show options
+        this.keyup(function() {
+            _field.click();
+            
+            const lookup = _field.val() as string;
             const items = _field.next();
             items.html('');
 
@@ -63,6 +70,10 @@ interface JQuery {
                 }
             }
 
+            if (items.children().length == 0) {
+                return;
+            }
+            
             // option action
             _field.next().find('.dropdown-item').click(function() {
                 _field.val($(this).html());

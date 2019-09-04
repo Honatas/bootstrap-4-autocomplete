@@ -60,6 +60,11 @@ interface JQuery {
             _field.click();
             
             const lookup = _field.val() as string;
+            if (lookup.length < opts.treshold) {
+                _field.dropdown('hide');
+                return;
+            }
+            
             const items = _field.next();
             items.html('');
 

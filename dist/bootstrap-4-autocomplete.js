@@ -33,6 +33,10 @@
             console.log(opts.source);
             _field.click();
             var lookup = _field.val();
+            if (lookup.length < opts.treshold) {
+                _field.dropdown('hide');
+                return;
+            }
             var items = _field.next();
             items.html('');
             var count = 0;

@@ -8,6 +8,12 @@
         var opts = {};
         $.extend(opts, defaults, options);
         var _field = $(this);
+        // clear previously set autocomplete
+        _field.parent().removeClass('dropdown');
+        _field.removeAttr('data-toggle');
+        _field.removeClass('dropdown-toggle');
+        _field.parent().find('.dropdown-menu').remove();
+        _field.dropdown('dispose');
         // attach dropdown
         _field.parent().addClass('dropdown');
         _field.attr('data-toggle', 'dropdown');
@@ -15,7 +21,7 @@
         _field.after('<div class="dropdown-menu"></div>');
         _field.dropdown(opts.dropdownOptions);
         // setup positioning and prevent show empty
-        this.click(function () {
+        this.off('click').click(function () {
             var lookup = _field.val();
             if (lookup.length < opts.treshold) {
                 _field.dropdown('hide');
@@ -23,7 +29,8 @@
             }
         });
         // show options
-        this.keyup(function () {
+        this.off('keyup').keyup(function () {
+            console.log(opts.source);
             _field.click();
             var lookup = _field.val();
             var items = _field.next();

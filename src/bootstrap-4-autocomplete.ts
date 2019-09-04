@@ -31,6 +31,13 @@ interface JQuery {
 
         let _field = $(this);
 
+        // clear previously set autocomplete
+        _field.parent().removeClass('dropdown');
+        _field.removeAttr('data-toggle');
+        _field.removeClass('dropdown-toggle');
+        _field.parent().find('.dropdown-menu').remove();
+        _field.dropdown('dispose');
+        
         // attach dropdown
         _field.parent().addClass('dropdown');
         _field.attr('data-toggle', 'dropdown');
@@ -39,7 +46,7 @@ interface JQuery {
         _field.dropdown(opts.dropdownOptions);
         
         // setup positioning and prevent show empty
-        this.click(function() {
+        this.off('click').click(function() {
             const lookup = _field.val() as string;
             if (lookup.length < opts.treshold) {
                 _field.dropdown('hide');
@@ -48,7 +55,8 @@ interface JQuery {
         });
 
         // show options
-        this.keyup(function() {
+        this.off('keyup').keyup(function() {
+            console.log(opts.source);
             _field.click();
             
             const lookup = _field.val() as string;
@@ -73,7 +81,7 @@ interface JQuery {
             if (items.children().length == 0) {
                 return;
             }
-            
+
             // option action
             _field.next().find('.dropdown-item').click(function() {
                 _field.val($(this).html());

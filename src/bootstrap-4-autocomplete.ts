@@ -72,7 +72,7 @@ interface JQuery {
                 const value = opts.value ? object[opts.value]: object;
                 if (label.toLowerCase().indexOf(lookup.toLowerCase()) >= 0) {
                     items.append('<button type="button" class="dropdown-item" data-value="' + value + '">' + label + '</button>');
-                    if (++count > opts.maximumItems) {
+                    if (++count >= opts.maximumItems) {
                         break;
                     }
                 }

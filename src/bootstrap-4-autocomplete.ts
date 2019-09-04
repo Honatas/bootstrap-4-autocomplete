@@ -45,7 +45,7 @@ interface JQuery {
         _field.after('<div class="dropdown-menu"></div>');
         _field.dropdown(opts.dropdownOptions);
         
-        // setup positioning and prevent show empty
+        // prevent show empty
         this.off('click').click(function() {
             const lookup = _field.val() as string;
             if (lookup.length < opts.treshold) {
@@ -56,7 +56,7 @@ interface JQuery {
 
         // show options
         this.off('keyup').keyup(function() {
-            console.log(opts.source);
+            // sets up positioning
             _field.click();
             
             const lookup = _field.val() as string;
@@ -64,7 +64,7 @@ interface JQuery {
                 _field.dropdown('hide');
                 return;
             }
-            
+
             const items = _field.next();
             items.html('');
 

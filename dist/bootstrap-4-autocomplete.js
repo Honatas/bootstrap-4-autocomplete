@@ -20,7 +20,7 @@
         _field.addClass('dropdown-toggle');
         _field.after('<div class="dropdown-menu"></div>');
         _field.dropdown(opts.dropdownOptions);
-        // setup positioning and prevent show empty
+        // prevent show empty
         this.off('click').click(function () {
             var lookup = _field.val();
             if (lookup.length < opts.treshold) {
@@ -30,7 +30,7 @@
         });
         // show options
         this.off('keyup').keyup(function () {
-            console.log(opts.source);
+            // sets up positioning
             _field.click();
             var lookup = _field.val();
             if (lookup.length < opts.treshold) {

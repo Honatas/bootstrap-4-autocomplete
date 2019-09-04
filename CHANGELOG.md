@@ -1,6 +1,6 @@
 ## Change Log
 
-### v1.0.2 (2019-09-05)
+### v1.0.2 (2019-09-04)
 - Fixed undesired behaviour when setting autocomplete on a same field multiple times
 - Fixed showing more items than desired
 - Fixed showing full search when backspacing to empty field

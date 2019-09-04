@@ -3,13 +3,13 @@ interface AutocompleteItem {
     label: string;
 }
 interface AutocompleteOptions {
+    dropdownOptions?: Bootstrap.DropdownOption;
+    label?: string;
+    maximumItems?: number;
+    onSelectItem?: (item: AutocompleteItem) => void;
     source?: object;
     treshold?: number;
-    maximumItems?: number;
     value?: string;
-    label?: string;
-    dropdownOptions?: Bootstrap.DropdownOption;
-    onSelectItem?: (item: AutocompleteItem) => void;
 }
 interface JQuery {
     autocomplete(options: AutocompleteOptions): JQuery<HTMLElement>;

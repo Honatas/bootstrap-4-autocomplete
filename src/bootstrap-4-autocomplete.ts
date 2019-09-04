@@ -26,7 +26,8 @@ interface JQuery {
 
     $.fn.autocomplete = function(options) {
         // merge options with default
-        let opts = $.extend(defaults, options);
+        let opts: AutocompleteOptions = {};
+        $.extend(opts, defaults, options);
 
         let _field = $(this);
 

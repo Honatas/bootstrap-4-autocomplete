@@ -5,7 +5,8 @@
     };
     $.fn.autocomplete = function (options) {
         // merge options with default
-        var opts = $.extend(defaults, options);
+        var opts = {};
+        $.extend(opts, defaults, options);
         var _field = $(this);
         // attach dropdown
         _field.parent().addClass('dropdown');

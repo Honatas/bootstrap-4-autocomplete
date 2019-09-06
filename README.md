@@ -1,6 +1,6 @@
 # Bootstrap 4 Autocomplete
 
-![Travis (.com)](https://img.shields.io/travis/com/honatas/bootstrap-4-autocomplete?style=plastic)
+[![Travis](https://img.shields.io/travis/honatas/bootstrap-4-autocomplete?style=plastic)](https://travis-ci.org/Honatas/bootstrap-4-autocomplete "View the build on Travis")
 ![GitHub](https://img.shields.io/github/license/honatas/bootstrap-4-autocomplete?style=plastic)
 [![npm](https://img.shields.io/npm/v/bootstrap-4-autocomplete?style=plastic)](https://npmjs.org/package/bootstrap-4-autocomplete "View this project on npm")
 [![typescript](https://img.shields.io/badge/made%20with-Typescript-blue?style=plastic)](https://www.typescriptlang.org/ "Try Typescript")

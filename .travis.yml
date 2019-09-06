@@ -1,3 +1,7 @@
 language: nodejs
 
-script: npm run build
+before_script:
+  - npm install
+
+script:
+  - npm run build

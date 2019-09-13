@@ -21,12 +21,12 @@
         _field.after('<div class="dropdown-menu"></div>');
         _field.dropdown(opts.dropdownOptions);
         // prevent show empty
-        this.off('click').click(function () {
-            var lookup = _field.val();
-            if (lookup.length < opts.treshold) {
-                _field.dropdown('hide');
-                return;
-            }
+        this.off('click').click(function (e) {
+            e.stopPropagation();
+            // const lookup = _field.val() as string;
+            // if (lookup.length >= opts.treshold) {
+            //     _field.dropdown('show');
+            // }
         });
         // show options
         this.off('keyup').keyup(function () {

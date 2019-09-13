@@ -1,7 +1,9 @@
 ## Change Log
 
 ### v1.0.4 (2019-09-13)
+- Fixed autocomplete appearing on click with more items than it should
 - Example added
+- Now building with Gulp
 
 ### v1.0.3 (2019-09-06)
 - Updated README with badges

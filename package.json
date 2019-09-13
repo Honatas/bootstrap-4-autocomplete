@@ -1,6 +1,6 @@
 {
   "name": "bootstrap-4-autocomplete",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A simple autocomplete/typeahead for Bootstrap 4 and jQuery",
   "typings": "dist/bootstrap-4-autocomplete.d.ts",
   "scripts": {

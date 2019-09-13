@@ -1,6 +1,8 @@
 language: node_js
 
 before_script:
+  - rm -r node_modules
+  - rm package-lock.json
   - npm install
 
 script:

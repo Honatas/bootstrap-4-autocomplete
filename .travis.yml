@@ -3,6 +3,10 @@ language: node_js
 node_js:
   - node
 
+branches:
+  only:
+    - master
+
 before_script:
   - rm -r node_modules
   - rm package-lock.json

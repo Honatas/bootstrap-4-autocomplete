@@ -1,8 +1,23 @@
 (function ($) {
     var defaults = {
         treshold: 4,
-        maximumItems: 5
+        maximumItems: 5,
+        highlightSelection: true,
+        highlightClass: 'text-primary'
     };
+    function createItem(lookup, item, opts) {
+        var label;
+        if (opts.highlightSelection) {
+            var idx = item.label.toLowerCase().indexOf(lookup.toLowerCase());
+            label = item.label.substring(0, idx)
+                + '<span class="' + opts.highlightClass + '">' + item.label.substring(idx, idx + lookup.length) + '</span>'
+                + item.label.substring(idx + lookup.length, item.label.length);
+        }
+        else {
+            label = item.label;
+        }
+        return '<button type="button" class="dropdown-item" data-value="' + item.value + '">' + label + '</button>';
+    }
     $.fn.autocomplete = function (options) {
         // merge options with default
         var opts = {};
@@ -23,10 +38,6 @@
         // prevent show empty
         this.off('click').click(function (e) {
             e.stopPropagation();
-            // const lookup = _field.val() as string;
-            // if (lookup.length >= opts.treshold) {
-            //     _field.dropdown('show');
-            // }
         });
         // show options
         this.off('keyup').keyup(function () {
@@ -44,10 +55,12 @@
             for (var i = 0; i < keys.length; i++) {
                 var key = keys[i];
                 var object = opts.source[key];
-                var label = opts.label ? object[opts.label] : key;
-                var value = opts.value ? object[opts.value] : object;
-                if (label.toLowerCase().indexOf(lookup.toLowerCase()) >= 0) {
-                    items.append('<button type="button" class="dropdown-item" data-value="' + value + '">' + label + '</button>');
+                var item = {
+                    label: opts.label ? object[opts.label] : key,
+                    value: opts.value ? object[opts.value] : object
+                };
+                if (item.label.toLowerCase().indexOf(lookup.toLowerCase()) >= 0) {
+                    items.append(createItem(lookup, item, opts));
                     if (++count >= opts.maximumItems) {
                         break;
                     }
@@ -58,11 +71,11 @@
             }
             // option action
             _field.next().find('.dropdown-item').click(function () {
-                _field.val($(this).html());
+                _field.val($(this).text());
                 if (opts.onSelectItem) {
                     opts.onSelectItem({
                         value: $(this).data('value'),
-                        label: $(this).html()
+                        label: $(this).text()
                     });
                 }
             });

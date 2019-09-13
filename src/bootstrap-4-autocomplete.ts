@@ -46,12 +46,8 @@ interface JQuery {
         _field.dropdown(opts.dropdownOptions);
         
         // prevent show empty
-        this.off('click').click(function() {
-            const lookup = _field.val() as string;
-            if (lookup.length < opts.treshold) {
-                _field.dropdown('hide');
-                return;
-            }
+        this.off('click').click(function(e) {
+            e.stopPropagation();
         });
 
         // show options

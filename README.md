@@ -33,7 +33,7 @@ Or you can get it from a CDN. Just be careful to add it to your HTML **AFTER** J
 
 ## Typescript
 
-Bootstrap 4 Autocomplete has bundled types definitions for your Typescript project. If for some reason your IDE/Compiler can't find the definitions, you can add them manually on your tsconfig.json file in the "includes" section:
+If your project uses Typescript, Bootstrap 4 Autocomplete has type definitions. If for some reason your IDE/Compiler can't find the definitions automatically, you can add them manually on your tsconfig.json file in the "includes" section:
 
     includes: ["node_modules/bootstrap-4-autocomplete/dist/bootstrap-4-autocomplete.d.ts"]
 
@@ -73,7 +73,7 @@ The data from where autocomplete will lookup items to show. This data has to be 
 If your JSON has this format, you don't need to set the label and value options, as they will be retrieved automatically. Otherwise, you can pass any format as you want, given you set the value and label options.  
 
 **treshold**:  
-The number of characters that need to be typed on the input to trigger the autocomplete. Default is 4.
+The number of characters that need to be typed on the input in order to trigger the autocomplete. Default is 4.
 
 **value**:  
 Where to find the value on your source.
@@ -91,4 +91,4 @@ Warning: setting autocomplete on a texfield removes any previously set 'click' a
 
 Feel free to open an issue or add a pull request. Anytime. Really, I mean it.  
 
-Also, if you like my work, consider [buying me a coffee](https://www.buymeacoffee.com/honatas).
+Also, if you like my work, I'll let you know that I love [coffee](https://www.buymeacoffee.com/honatas). \*wink wink nudge nudge\*

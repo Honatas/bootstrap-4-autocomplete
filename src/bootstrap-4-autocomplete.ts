@@ -5,6 +5,8 @@ interface AutocompleteItem {
 
 interface AutocompleteOptions {
     dropdownOptions?: Bootstrap.DropdownOption,
+    highlightClass?: string,
+    highlightTyped?: boolean,
     label?: string,
     maximumItems?: number,
     onSelectItem?: (item: AutocompleteItem) => void,
@@ -22,7 +24,22 @@ interface JQuery {
     let defaults: AutocompleteOptions = {
         treshold: 4,
         maximumItems: 5,
+        highlightTyped: true,
+        highlightClass: 'text-primary',
     };
+
+    function createItem(lookup: string, item: AutocompleteItem, opts: AutocompleteOptions):string {
+        let label: string;
+        if (opts.highlightTyped) {
+            const idx = item.label.toLowerCase().indexOf(lookup.toLowerCase());
+            label = item.label.substring(0, idx)
+                    + '<span class="' + opts.highlightClass + '">' + item.label.substring(idx, idx + lookup.length) + '</span>'
+                    + item.label.substring(idx + lookup.length, item.label.length);
+        } else {
+            label = item.label;
+        }
+        return '<button type="button" class="dropdown-item" data-value="' + item.value + '">' + label + '</button>';
+    }
 
     $.fn.autocomplete = function(options) {
         // merge options with default
@@ -69,10 +86,12 @@ interface JQuery {
             for (let i = 0; i < keys.length; i++) {
                 const key = keys[i];
                 const object = opts.source[key];
-                const label: string = opts.label ? object[opts.label] : key;
-                const value = opts.value ? object[opts.value]: object;
-                if (label.toLowerCase().indexOf(lookup.toLowerCase()) >= 0) {
-                    items.append('<button type="button" class="dropdown-item" data-value="' + value + '">' + label + '</button>');
+                const item = {
+                    label: opts.label ? object[opts.label] : key,
+                    value: opts.value ? object[opts.value]: object,
+                };
+                if (item.label.toLowerCase().indexOf(lookup.toLowerCase()) >= 0) {
+                    items.append(createItem(lookup, item, opts));
                     if (++count >= opts.maximumItems) {
                         break;
                     }
@@ -85,11 +104,11 @@ interface JQuery {
 
             // option action
             _field.next().find('.dropdown-item').click(function() {
-                _field.val($(this).html());
+                _field.val($(this).text());
                 if (opts.onSelectItem) {
                     opts.onSelectItem({
                         value: $(this).data('value'),
-                        label: $(this).html(),
+                        label: $(this).text(),
                     })
                 }
             });

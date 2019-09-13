@@ -52,6 +52,12 @@ Options is a JSON object with the following attributes (in alphabetical order):
 **dropdownOptions**:  
 It's the same options from Bootstrap's Dropdown, documented [here](https://getbootstrap.com/docs/4.3/components/dropdowns/#options).  
 
+**highlightClass**:  
+The class to use when highlighting typed text on items. Only used when highlightTyped is true. Default is text-primary.  
+
+**highlightTyped**:  
+Wether to highlight (style) typed text on items. Default is true.  
+
 **label**:  
 Where to find the label on your source. The label is what will be shown on each item in the autocomplete list.  
 

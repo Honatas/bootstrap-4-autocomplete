@@ -4,6 +4,8 @@ interface AutocompleteItem {
 }
 interface AutocompleteOptions {
     dropdownOptions?: Bootstrap.DropdownOption;
+    highlightClass?: string;
+    highlightTyped?: boolean;
     label?: string;
     maximumItems?: number;
     onSelectItem?: (item: AutocompleteItem) => void;

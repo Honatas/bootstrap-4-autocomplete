@@ -13,6 +13,7 @@
             <label for="myAutocomplete">Bootstrap 4 Autocomplete</label>
             <input type="text" id="myAutocomplete" class="form-control"></input>
         </div>
+        <div id="output"></div>
     </div>
 
     <!-- Dependencies -->
@@ -34,8 +35,14 @@
             "You can use this example to test": 7,
         }
 
+        function onSelectItem(item) {
+            $('#output').html('<b>Value:</b> ' + item.value + ' - <b>Label:</b> ' + item.label);
+        }
+
         $('#myAutocomplete').autocomplete({
-            source: src
+            source: src,
+            onSelectItem: onSelectItem,
+            highlightClass: 'text-danger'
         });
     </script>
 </body>

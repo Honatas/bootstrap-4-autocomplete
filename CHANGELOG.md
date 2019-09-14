@@ -1,5 +1,9 @@
 ## Change Log
 
+### v1.1.0 (2019-09-14)
+- Added text highlighting
+- Fixed wrong positioning
+
 ### v1.0.4 (2019-09-13)
 - Fixed autocomplete appearing on click with more items than it should
 - Example added

@@ -1,5 +1,9 @@
 ## Change Log
 
+### v1.2.0 (2019-09-15)
+- Added the input element as a parameter to onSelectItem
+- Fixed showing empty
+
 ### v1.1.0 (2019-09-14)
 - Added text highlighting
 - Fixed wrong positioning

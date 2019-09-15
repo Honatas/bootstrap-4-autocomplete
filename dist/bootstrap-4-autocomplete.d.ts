@@ -8,7 +8,7 @@ interface AutocompleteOptions {
     highlightTyped?: boolean;
     label?: string;
     maximumItems?: number;
-    onSelectItem?: (item: AutocompleteItem) => void;
+    onSelectItem?: (item: AutocompleteItem, element: HTMLElement) => void;
     source?: object;
     treshold?: number;
     value?: string;

@@ -29,14 +29,17 @@
             "Bootstrap 4 Autocomplete example": 1,
             "Best example in the world": 2,
             "Bootstrap 4 Autocomplete is very nice": 3,
-            "It contains neatly arranged examples": 4,
+            "It contains neatly arranged example items": 4,
             "With many autocomplete values": 5,
             "And it uses default Bootstrap 4 components": 6,
             "You can use this example to test": 7,
         }
 
-        function onSelectItem(item) {
-            $('#output').html('<b>Value:</b> ' + item.value + ' - <b>Label:</b> ' + item.label);
+        function onSelectItem(item, element) {
+            $('#output').html(
+                'Element <b>' + $(element).attr('id') + '</b> was selected<br/>' +
+                '<b>Value:</b> ' + item.value + ' - <b>Label:</b> ' + item.label
+            );
         }
 
         $('#myAutocomplete').autocomplete({

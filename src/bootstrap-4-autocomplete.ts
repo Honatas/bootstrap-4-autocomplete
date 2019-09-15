@@ -9,7 +9,7 @@ interface AutocompleteOptions {
     highlightTyped?: boolean,
     label?: string,
     maximumItems?: number,
-    onSelectItem?: (item: AutocompleteItem) => void,
+    onSelectItem?: (item: AutocompleteItem, element: HTMLElement) => void,
     source?: object,
     treshold?: number,
     value?: string,
@@ -45,7 +45,7 @@ interface JQuery {
         const lookup = field.val() as string;
         if (lookup.length < opts.treshold) {
             field.dropdown('hide');
-            return;
+            return 0;
         }
 
         const items = field.next();
@@ -75,7 +75,7 @@ interface JQuery {
                 opts.onSelectItem({
                     value: $(this).data('value'),
                     label: $(this).text(),
-                })
+                }, field[0]);
             }
         });
 
@@ -106,7 +106,8 @@ interface JQuery {
         this.off('click').click(function(e) {
             if (createItems(_field, opts) == 0) {
                 // prevent show empty
-                e.stopPropagation(); 
+                e.stopPropagation();
+                _field.dropdown('hide');
             };
         });
 

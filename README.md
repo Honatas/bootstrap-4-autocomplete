@@ -41,6 +41,8 @@ If your project uses Typescript, Bootstrap 4 Autocomplete has type definitions. 
 
 ## Usage
 
+Take a look at the bundled example/example.html to get an overview of a simple usage.  
+
 Given you have a textfield with id "myAutocomplete", you can:
 
 ```javascript
@@ -65,7 +67,7 @@ Where to find the label on your source. The label is what will be shown on each 
 How many items you want to show when the autocomplete is displayed. Default is 5.  
 
 **onSelectItem**:  
-A callback that is fired every time an item is selected. The selected item is passed as a parameter, in the format:
+A callback that is fired every time an item is selected. It receives two parameters: the first is the selected item, the second is the textfield element. The selected item has the format:
     
     { value: value, label: label }  
 

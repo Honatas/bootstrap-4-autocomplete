@@ -22,7 +22,7 @@
         var lookup = field.val();
         if (lookup.length < opts.treshold) {
             field.dropdown('hide');
-            return;
+            return 0;
         }
         var items = field.next();
         items.html('');
@@ -49,7 +49,7 @@
                 opts.onSelectItem({
                     value: $(this).data('value'),
                     label: $(this).text()
-                });
+                }, field[0]);
             }
         });
         return items.children().length;
@@ -75,6 +75,7 @@
             if (createItems(_field, opts) == 0) {
                 // prevent show empty
                 e.stopPropagation();
+                _field.dropdown('hide');
             }
             ;
         });

@@ -8,9 +8,11 @@
     function createItem(lookup, item, opts) {
         var label = item.label;
         if (opts.highlightTyped) {
-            var terms = lookup.split(' ');
-            terms.map(function (term) {
-                var regex = new RegExp(term, 'gi');
+            var terms = lookup.trim().replace(/[^A-Za-z0-9]/gi, ' ').split(' ');
+            terms.filter(function (term) {
+                return term.length > 0;
+            }).map(function (term) {
+                var regex = new RegExp(term + "(?![^>]*>)", 'gi');
                 label = label.replace(regex, "<span class=\"" + opts.highlightClass + "\">" + term + "</span>");
             });
         }
@@ -25,9 +27,9 @@
         var items = field.next();
         items.html('');
         var keys = Object.keys(opts.source);
-        var pattern = new RegExp(lookup.toLowerCase().replace(/\s/g, '(.*)'), 'gi');
+        var pattern = new RegExp(lookup.replace(/[^A-Za-z0-9]/g, ' ').replace(/\s/g, '(.*)'), 'gi');
         keys.filter(function (key) {
-            return pattern.test(key);
+            return key.match(pattern);
         })
             .slice(0, opts.maximumItems)
             .map(function (key) {

@@ -32,10 +32,12 @@ interface JQuery {
         let label = item.label;
 
         if (opts.highlightTyped) {
-            let terms = lookup.split(' ');
+            let terms = lookup.trim().replace(/[^A-Za-z0-9]/gi, ' ').split(' ');
 
-            terms.map((term) => {
-                let regex = new RegExp(term, 'gi');
+            terms.filter((term) => {
+                return term.length > 0;
+            }).map((term) => {
+                let regex = new RegExp(`${term}(?![^>]*>)`, 'gi');
 
                 label = label.replace(regex, `<span class="${opts.highlightClass}">${term}</span>`);
             });
@@ -57,10 +59,10 @@ interface JQuery {
 
         const keys = Object.keys(opts.source);
 
-        let pattern = new RegExp(lookup.toLowerCase().replace(/\s/g, '(.*)'), 'gi');
+        let pattern = new RegExp(lookup.replace(/[^A-Za-z0-9]/g, ' ').replace(/\s/g, '(.*)'), 'gi');
 
         keys.filter((key) => {
-            return pattern.test(key);
+            return key.match(pattern);
         })
             .slice(0, opts.maximumItems)
             .map((key) => {

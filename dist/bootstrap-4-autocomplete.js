@@ -6,15 +6,13 @@
         highlightClass: 'text-primary'
     };
     function createItem(lookup, item, opts) {
-        var label;
+        var label = item.label;
         if (opts.highlightTyped) {
-            var idx = item.label.toLowerCase().indexOf(lookup.toLowerCase());
-            label = item.label.substring(0, idx)
-                + '<span class="' + opts.highlightClass + '">' + item.label.substring(idx, idx + lookup.length) + '</span>'
-                + item.label.substring(idx + lookup.length, item.label.length);
-        }
-        else {
-            label = item.label;
+            var terms = lookup.split(' ');
+            terms.map(function (term) {
+                var regex = new RegExp(term, 'gi');
+                label = label.replace(regex, "<span class=\"" + opts.highlightClass + "\">" + term + "</span>");
+            });
         }
         return '<button type="button" class="dropdown-item" data-value="' + item.value + '">' + label + '</button>';
     }
@@ -26,22 +24,20 @@
         }
         var items = field.next();
         items.html('');
-        var count = 0;
         var keys = Object.keys(opts.source);
-        for (var i = 0; i < keys.length; i++) {
-            var key = keys[i];
+        var pattern = new RegExp(lookup.toLowerCase().replace(/\s/g, '(.*)'), 'gi');
+        keys.filter(function (key) {
+            return pattern.test(key);
+        })
+            .slice(0, opts.maximumItems)
+            .map(function (key) {
             var object = opts.source[key];
             var item = {
                 label: opts.label ? object[opts.label] : key,
                 value: opts.value ? object[opts.value] : object
             };
-            if (item.label.toLowerCase().indexOf(lookup.toLowerCase()) >= 0) {
-                items.append(createItem(lookup, item, opts));
-                if (++count >= opts.maximumItems) {
-                    break;
-                }
-            }
-        }
+            items.append(createItem(lookup, item, opts));
+        });
         // option action
         field.next().find('.dropdown-item').click(function () {
             field.val($(this).text());

@@ -29,15 +29,18 @@ interface JQuery {
     };
 
     function createItem(lookup: string, item: AutocompleteItem, opts: AutocompleteOptions):string {
-        let label: string;
+        let label = item.label;
+
         if (opts.highlightTyped) {
-            const idx = item.label.toLowerCase().indexOf(lookup.toLowerCase());
-            label = item.label.substring(0, idx)
-                    + '<span class="' + opts.highlightClass + '">' + item.label.substring(idx, idx + lookup.length) + '</span>'
-                    + item.label.substring(idx + lookup.length, item.label.length);
-        } else {
-            label = item.label;
+            let terms = lookup.split(' ');
+
+            terms.map((term) => {
+                let regex = new RegExp(term, 'gi');
+
+                label = label.replace(regex, `<span class="${opts.highlightClass}">${term}</span>`);
+            });
         }
+
         return '<button type="button" class="dropdown-item" data-value="' + item.value + '">' + label + '</button>';
     }
 
@@ -48,25 +51,28 @@ interface JQuery {
             return 0;
         }
 
-        const items = field.next();
+        let items = field.next();
+
         items.html('');
 
-        let count = 0;
         const keys = Object.keys(opts.source);
-        for (let i = 0; i < keys.length; i++) {
-            const key = keys[i];
-            const object = opts.source[key];
-            const item = {
-                label: opts.label ? object[opts.label] : key,
-                value: opts.value ? object[opts.value]: object,
-            };
-            if (item.label.toLowerCase().indexOf(lookup.toLowerCase()) >= 0) {
+
+        let pattern = new RegExp(lookup.toLowerCase().replace(/\s/g, '(.*)'), 'gi');
+
+        keys.filter((key) => {
+            return pattern.test(key);
+        })
+            .slice(0, opts.maximumItems)
+            .map((key) => {
+                const object = opts.source[key];
+
+                const item = {
+                    label: opts.label ? object[opts.label] : key,
+                    value: opts.value ? object[opts.value] : object,
+                };
+
                 items.append(createItem(lookup, item, opts));
-                if (++count >= opts.maximumItems) {
-                    break;
-                }
-            }
-        }
+            });
 
         // option action
         field.next().find('.dropdown-item').click(function() {

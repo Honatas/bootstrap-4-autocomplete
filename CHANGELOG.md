@@ -1,5 +1,8 @@
 ## Change Log
 
+### v1.2.1 (2020-01-07)
+- Fixed destroying previously set click and keyup events
+
 ### v1.2.0 (2019-09-15)
 - Added the input element as a parameter to onSelectItem
 - Fixed showing empty

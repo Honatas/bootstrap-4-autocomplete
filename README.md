@@ -93,7 +93,6 @@ Where to find the value on your source.
 
 When you call autocomplete on a texfield (also known as input type="text"), this lib builds a Dropdown around the textfield, having it's parent as the container. The textfield is then injected an **onkeyup** event that triggers the Dropdown when the length of the text typed is equal to or greater than the treshold. When this happens, the data is then filtered to get only the items that contain the text typed. When you activate one of the items, the textfield's value is set to that item's label.  
 
-Warning: setting autocomplete on a texfield removes any previously set 'click' and 'keyup' events, so if you need to set any of those, set them after autocomplete.
 
 
 ## Contributions

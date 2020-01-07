@@ -1,7 +1,8 @@
 # Bootstrap 4 Autocomplete
 
 [![Travis](https://img.shields.io/travis/honatas/bootstrap-4-autocomplete?style=plastic)](https://travis-ci.org/Honatas/bootstrap-4-autocomplete "View the build on Travis")
-![GitHub](https://img.shields.io/github/license/honatas/bootstrap-4-autocomplete?style=plastic)
+[![David](https://img.shields.io/david/honatas/bootstrap-4-autocomplete?style=plastic)](https://david-dm.org/honatas/bootstrap-4-autocomplete "View the dependencies status on David")
+[![GitHub](https://img.shields.io/github/license/honatas/bootstrap-4-autocomplete?style=plastic)](https://github.com/Honatas/bootstrap-4-autocomplete "View this project on GitHub")
 [![npm](https://img.shields.io/npm/v/bootstrap-4-autocomplete?style=plastic)](https://npmjs.org/package/bootstrap-4-autocomplete "View this project on npm")
 [![typescript](https://img.shields.io/badge/made%20with-Typescript-blue?style=plastic)](https://www.typescriptlang.org/ "Try Typescript")
 [![coffee](https://img.shields.io/badge/buy%20me%20a-coffee-orange?style=plastic)](https://www.buymeacoffee.com/honatas "Buy me a coffee")
@@ -90,9 +91,8 @@ Where to find the value on your source.
 
 ## How it works
 
-When you call autocomplete on a texfield (also known as input type="text"), this lib builds a Dropdown around the textfield, having it's parent as the container. The textfield is then injected an **onkeyup** event that triggers the Dropdown when the length of the text typed is equal or greater than the treshold. When this happens, the data is then filtered to get only the items that contain the text typed. When you activate one of the items, the textfield's value is set to that item's label.  
+When you call autocomplete on a texfield (also known as input type="text"), this lib builds a Dropdown around the textfield, having it's parent as the container. The textfield is then injected an **onkeyup** event that triggers the Dropdown when the length of the text typed is equal to or greater than the treshold. When this happens, the data is then filtered to get only the items that contain the text typed. When you activate one of the items, the textfield's value is set to that item's label.  
 
-Warning: setting autocomplete on a texfield removes any previously set 'click' and 'keyup' events, so if you need to set any of those, set them after autocomplete.
 
 
 ## Contributions

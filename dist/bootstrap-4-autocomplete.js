@@ -71,7 +71,7 @@
         _field.addClass('dropdown-toggle');
         _field.after('<div class="dropdown-menu"></div>');
         _field.dropdown(opts.dropdownOptions);
-        this.off('click').click(function (e) {
+        this.off('click.autocomplete').click('click.autocomplete', function (e) {
             if (createItems(_field, opts) == 0) {
                 // prevent show empty
                 e.stopPropagation();
@@ -80,7 +80,7 @@
             ;
         });
         // show options
-        this.off('keyup').keyup(function () {
+        this.off('keyup.autocomplete').keyup('keyup.autocomplete', function () {
             if (createItems(_field, opts) > 0) {
                 _field.dropdown('show');
             }

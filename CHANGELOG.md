@@ -1,5 +1,8 @@
 ## Change Log
 
+### v1.2.2 (2020-01-09)
+- Add entry point (main) to package.json
+
 ### v1.2.1 (2020-01-07)
 - Fixed destroying previously set click and keyup events
 

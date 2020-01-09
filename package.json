@@ -2,6 +2,7 @@
   "name": "bootstrap-4-autocomplete",
   "version": "1.2.1",
   "description": "A simple autocomplete/typeahead for Bootstrap 4 and jQuery",
+  "main": "dist/bootstrap-4-autocomplete.js",
   "typings": "dist/bootstrap-4-autocomplete.d.ts",
   "scripts": {
     "build": "gulp",

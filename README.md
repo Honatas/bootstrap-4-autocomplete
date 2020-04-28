@@ -5,7 +5,7 @@
 [![GitHub](https://img.shields.io/github/license/honatas/bootstrap-4-autocomplete?style=plastic)](https://github.com/Honatas/bootstrap-4-autocomplete "View this project on GitHub")
 [![npm](https://img.shields.io/npm/v/bootstrap-4-autocomplete?style=plastic)](https://npmjs.org/package/bootstrap-4-autocomplete "View this project on npm")
 [![typescript](https://img.shields.io/badge/made%20with-Typescript-blue?style=plastic)](https://www.typescriptlang.org/ "Try Typescript")
-[![coffee](https://img.shields.io/badge/buy%20me%20a-coffee-orange?style=plastic)](https://www.buymeacoffee.com/honatas "Buy me a coffee")
+[![coffee](https://img.shields.io/badge/buy%20me%20a-coffee-orange?style=plastic)](https://ko-fi.com/honatas "Buy me a coffee")
 
 A very small (less than 2Kb) autocomplete/typeahead for Bootstrap 4 and jQuery.  
 
@@ -99,4 +99,4 @@ When you call autocomplete on a texfield (also known as input type="text"), this
 
 Feel free to open an issue or add a pull request. Anytime. Really, I mean it.  
 
-Also, if you like my work, I'll let you know that I love [coffee](https://www.buymeacoffee.com/honatas). \*wink wink nudge nudge\*
+Also, if you like my work, I'll let you know that I love [coffee](https://ko-fi.com/honatas). \*wink wink nudge nudge\*

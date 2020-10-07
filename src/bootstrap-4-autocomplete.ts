@@ -75,6 +75,7 @@ interface JQuery {
                 opts.onSelectItem({
                     value: $(this).data('value'),
                     label: $(this).text(),
+                    parentIDIndex: opts.parentIDIndex
                 }, field[0]);
             }
         });

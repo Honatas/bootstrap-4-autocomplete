@@ -4,7 +4,8 @@ interface AutocompleteItem {
 }
 interface AutocompleteOptions {
     dropdownOptions?: Bootstrap.DropdownOption;
-    highlightClass?: string;
+    dropdownClass?: string | string[];
+    highlightClass?: string | string[];
     highlightTyped?: boolean;
     label?: string;
     maximumItems?: number;

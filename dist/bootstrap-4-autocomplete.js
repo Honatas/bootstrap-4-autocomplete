@@ -10,13 +10,27 @@
         if (opts.highlightTyped) {
             var idx = item.label.toLowerCase().indexOf(lookup.toLowerCase());
             label = item.label.substring(0, idx)
-                + '<span class="' + opts.highlightClass + '">' + item.label.substring(idx, idx + lookup.length) + '</span>'
+                + '<span class="' + expandClassArray(opts.highlightClass) + '">' + item.label.substring(idx, idx + lookup.length) + '</span>'
                 + item.label.substring(idx + lookup.length, item.label.length);
         }
         else {
             label = item.label;
         }
         return '<button type="button" class="dropdown-item" data-value="' + item.value + '">' + label + '</button>';
+    }
+    function expandClassArray(classes) {
+        if (typeof classes == "string") {
+            return classes;
+        }
+        if (classes.length == 0) {
+            return '';
+        }
+        var ret = '';
+        for (var _i = 0, classes_1 = classes; _i < classes_1.length; _i++) {
+            var clas = classes_1[_i];
+            ret += clas + ' ';
+        }
+        return ret.substring(0, ret.length - 1);
     }
     function createItems(field, opts) {
         var lookup = field.val();
@@ -37,7 +51,7 @@
             };
             if (item.label.toLowerCase().indexOf(lookup.toLowerCase()) >= 0) {
                 items.append(createItem(lookup, item, opts));
-                if (++count >= opts.maximumItems) {
+                if (opts.maximumItems > 0 && ++count >= opts.maximumItems) {
                     break;
                 }
             }
@@ -69,7 +83,11 @@
         _field.parent().addClass('dropdown');
         _field.attr('data-toggle', 'dropdown');
         _field.addClass('dropdown-toggle');
-        _field.after('<div class="dropdown-menu"></div>');
+        var dropdown = $('<div class="dropdown-menu" ></div>');
+        // attach dropdown class
+        if (opts.dropdownClass)
+            dropdown.addClass(opts.dropdownClass);
+        _field.after(dropdown);
         _field.dropdown(opts.dropdownOptions);
         this.off('click.autocomplete').click('click.autocomplete', function (e) {
             if (createItems(_field, opts) == 0) {

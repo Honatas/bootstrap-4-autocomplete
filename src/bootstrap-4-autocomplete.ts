@@ -5,7 +5,8 @@ interface AutocompleteItem {
 
 interface AutocompleteOptions {
     dropdownOptions?: Bootstrap.DropdownOption,
-    highlightClass?: string,
+    dropdownClass?: string | string[],
+    highlightClass?: string | string[],
     highlightTyped?: boolean,
     label?: string,
     maximumItems?: number,
@@ -33,12 +34,26 @@ interface JQuery {
         if (opts.highlightTyped) {
             const idx = item.label.toLowerCase().indexOf(lookup.toLowerCase());
             label = item.label.substring(0, idx)
-                    + '<span class="' + opts.highlightClass + '">' + item.label.substring(idx, idx + lookup.length) + '</span>'
+                    + '<span class="' + expandClassArray(opts.highlightClass) + '">' + item.label.substring(idx, idx + lookup.length) + '</span>'
                     + item.label.substring(idx + lookup.length, item.label.length);
         } else {
             label = item.label;
         }
         return '<button type="button" class="dropdown-item" data-value="' + item.value + '">' + label + '</button>';
+    }
+
+    function expandClassArray(classes: string | string[]): string {
+        if (typeof classes == "string") {
+            return classes;
+        }
+        if (classes.length == 0) {
+            return '';
+        }
+        let ret = '';
+        for (const clas of classes) {
+            ret += clas + ' ';
+        }
+        return ret.substring(0, ret.length - 1);
     }
 
     function createItems(field: JQuery<HTMLElement>, opts: AutocompleteOptions) {
@@ -100,7 +115,11 @@ interface JQuery {
         _field.parent().addClass('dropdown');
         _field.attr('data-toggle', 'dropdown');
         _field.addClass('dropdown-toggle');
-        _field.after('<div class="dropdown-menu"></div>');
+        const dropdown = $('<div class="dropdown-menu" ></div>');
+        // attach dropdown class
+        if (opts.dropdownClass) dropdown.addClass(opts.dropdownClass);
+        _field.after(dropdown);
+
         _field.dropdown(opts.dropdownOptions);
         
         this.off('click.autocomplete').click('click.autocomplete', function(e) {

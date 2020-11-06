@@ -1,5 +1,9 @@
 ## Change Log
 
+### v1.3.0 (2020-11-06)
+- Added dropdownClass option to apply classes to the dropdown container
+- dropdownClass and highlightClass can now be passed a string or an array of strings
+
 ### v1.2.3 (2020-04-28)
 - Fixed vulnerability (dependency)
 

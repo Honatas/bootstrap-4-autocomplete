@@ -77,7 +77,7 @@ interface JQuery {
             };
             if (item.label.toLowerCase().indexOf(lookup.toLowerCase()) >= 0) {
                 items.append(createItem(lookup, item, opts));
-                if (++count >= opts.maximumItems) {
+                if (opts.maximumItems > 0 &&  ++count >= opts.maximumItems) {
                     break;
                 }
             }

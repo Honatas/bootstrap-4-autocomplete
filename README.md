@@ -23,9 +23,9 @@ Or you can get it from a CDN. Just be careful to add it to your HTML **AFTER** J
 
 ```html
 <!-- Dependencies -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
 <!-- Bootstrap 4 Autocomplete -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-4-autocomplete/dist/bootstrap-4-autocomplete.min.js" crossorigin="anonymous"></script>
 ```
@@ -55,8 +55,11 @@ Options is a JSON object with the following attributes (in alphabetical order):
 **dropdownOptions**:  
 It's the same options from Bootstrap's Dropdown, documented [here](https://getbootstrap.com/docs/4.3/components/dropdowns/#options).  
 
+**dropdownClass**:  
+The class of the dropdown-menu element, which is the box that is displayed. Can take a string or an array of strings.  
+
 **highlightClass**:  
-The class to use when highlighting typed text on items. Only used when highlightTyped is true. Default is text-primary.  
+The class to use when highlighting typed text on items. Only used when highlightTyped is true. Default is text-primary. Can take a string or an array of strings.  
 
 **highlightTyped**:  
 Wether to highlight (style) typed text on items. Default is true.  
@@ -65,7 +68,7 @@ Wether to highlight (style) typed text on items. Default is true.
 Where to find the label on your source. The label is what will be shown on each item in the autocomplete list.  
 
 **maximumItems**:  
-How many items you want to show when the autocomplete is displayed. Default is 5.  
+How many items you want to show when the autocomplete is displayed. Default is 5. Set to 0 to display all available items.  
 
 **onSelectItem**:  
 A callback that is fired every time an item is selected. It receives two parameters: the first is the selected item, the second is the textfield element. The selected item has the format:

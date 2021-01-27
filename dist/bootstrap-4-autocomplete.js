@@ -8,11 +8,14 @@
     function createItem(lookup, item, opts) {
         var label;
         if (opts.highlightTyped) {
-			xarr = lookup.split(' ');
+			var xarr = lookup.split(' ');
 			label = item.label;
 			for (var jj = 0; jj < xarr.length; jj++) {
+			 if (xarr[jj] == ''){continue;}
              var idx = label.toLowerCase().indexOf(xarr[jj].toLowerCase());
-			 xarr[jj] = ('000'+idx).substr(0,4)+xarr[jj];
+			 var xkey = ('000'+idx);
+			 xkey = xkey.substr(xkey.length-4)
+			 xarr[jj] = xkey+xarr[jj];
 			}
 			xarr.sort();
 			for (var jj = xarr.length-1; jj >= 0; jj--) {
@@ -50,7 +53,7 @@
         var items = field.next();
         items.html('');
         var count = 0;
-		larr = lookup.split(' ');
+		var larr = lookup.split(' ');
         var keys = Object.keys(opts.source);
        for (var i = 0; i < keys.length; i++) {
             var key = keys[i];

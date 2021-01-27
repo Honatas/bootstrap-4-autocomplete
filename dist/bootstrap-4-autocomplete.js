@@ -8,10 +8,19 @@
     function createItem(lookup, item, opts) {
         var label;
         if (opts.highlightTyped) {
-            var idx = item.label.toLowerCase().indexOf(lookup.toLowerCase());
-            label = item.label.substring(0, idx)
-                + '<span class="' + expandClassArray(opts.highlightClass) + '">' + item.label.substring(idx, idx + lookup.length) + '</span>'
-                + item.label.substring(idx + lookup.length, item.label.length);
+			xarr = lookup.split(' ');
+			label = item.label;
+			for (var jj = 0; jj < xarr.length; jj++) {
+             var idx = label.toLowerCase().indexOf(xarr[jj].toLowerCase());
+			 xarr[jj] = ('000'+idx).substr(0,4)+xarr[jj];
+			}
+			xarr.sort();
+			for (var jj = xarr.length-1; jj >= 0; jj--) {
+             var idx = label.toLowerCase().indexOf(xarr[jj].substr(4,999).toLowerCase());
+             label = label.substring(0, idx)
+                + '<span class="' + expandClassArray(opts.highlightClass) + '">' + label.substring(idx, idx + xarr[jj].length - 4) + '</span>'
+                + label.substring(idx + xarr[jj].length -4, label.length);
+			}
         }
         else {
             label = item.label;
@@ -41,20 +50,22 @@
         var items = field.next();
         items.html('');
         var count = 0;
+		larr = lookup.split(' ');
         var keys = Object.keys(opts.source);
-        for (var i = 0; i < keys.length; i++) {
+       for (var i = 0; i < keys.length; i++) {
             var key = keys[i];
             var object = opts.source[key];
             var item = {
                 label: opts.label ? object[opts.label] : key,
                 value: opts.value ? object[opts.value] : object
             };
-            if (item.label.toLowerCase().indexOf(lookup.toLowerCase()) >= 0) {
-                items.append(createItem(lookup, item, opts));
-                if (opts.maximumItems > 0 && ++count >= opts.maximumItems) {
-                    break;
-                }
-            }
+			found = 1;
+			for (var j = 0; j < larr.length; j++) {
+             if (item.label.toLowerCase().indexOf(larr[j].toLowerCase()) == -1) {found = 0;break;}
+			}
+			if (!found){continue;}
+            items.append(createItem(lookup, item, opts));
+            if (opts.maximumItems > 0 && ++count >= opts.maximumItems) {break;}
         }
         // option action
         field.next().find('.dropdown-item').click(function () {

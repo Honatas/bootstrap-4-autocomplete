@@ -5,7 +5,7 @@
 [![GitHub](https://img.shields.io/github/license/honatas/bootstrap-4-autocomplete?style=plastic)](https://github.com/Honatas/bootstrap-4-autocomplete "View this project on GitHub")
 [![npm](https://img.shields.io/npm/v/bootstrap-4-autocomplete?style=plastic)](https://npmjs.org/package/bootstrap-4-autocomplete "View this project on npm")
 [![typescript](https://img.shields.io/badge/made%20with-Typescript-blue?style=plastic)](https://www.typescriptlang.org/ "Try Typescript")
-[![coffee](https://img.shields.io/badge/buy%20me%20a-coffee-orange?style=plastic)](https://ko-fi.com/honatas "Buy me a coffee")
+[![coffee](https://img.shields.io/badge/buy%20me%20a-coffee-brown?style=plastic)](https://ko-fi.com/honatas "Buy me a coffee")
 
 A very small (less than 2Kb) autocomplete/typeahead for Bootstrap 4 and jQuery.  
 
@@ -42,7 +42,7 @@ If your project uses Typescript, Bootstrap 4 Autocomplete has type definitions. 
 
 ## Usage
 
-Take a look at the bundled example/example.html to get an overview of a simple usage.  
+Take a look at this [fiddle](https://jsfiddle.net/Honatas/n943qob1/5/) to get an overview of a simple usage.  
 
 Given you have a textfield with id "myAutocomplete", you can:
 

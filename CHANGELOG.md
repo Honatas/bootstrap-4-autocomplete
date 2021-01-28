@@ -1,6 +1,6 @@
 ## Change Log
 
-### v1.3.1 (2021-01-28)
+### v1.3.2 (2021-01-28)
 - Added reference to jsfiddle on readme
 
 ### v1.3.0 (2020-11-06)

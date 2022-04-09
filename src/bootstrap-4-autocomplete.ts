@@ -29,7 +29,7 @@ interface JQuery {
         highlightClass: 'text-primary',
     };
 
-    function createItem(lookup: string, item: AutocompleteItem, opts: AutocompleteOptions):string {
+    function createItem(lookup: string, item: AutocompleteItem, opts: AutocompleteOptions):JQuery {
         let label: string;
         if (opts.highlightTyped) {
             const idx = item.label.toLowerCase().indexOf(lookup.toLowerCase());
@@ -39,7 +39,9 @@ interface JQuery {
         } else {
             label = item.label;
         }
-        return '<button type="button" class="dropdown-item" data-value="' + item.value + '">' + label + '</button>';
+        const itemEl = $('<button type="button" class="dropdown-item">' + label + '</button>')
+        itemEl.data('value', item.value)
+        return itemEl;
     }
 
     function expandClassArray(classes: string | string[]): string {
